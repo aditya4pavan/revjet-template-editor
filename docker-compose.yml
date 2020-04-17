@@ -1,8 +1,13 @@
 version: '3.7'
 
 services:
-    react:
-        build:
-            context: .
-        ports: 
-            - "3000:3000"
+  webapp:
+    build: . 
+    ports:
+      - "8000:80"
+    networks:
+      - react-app
+     
+networks:
+  react-app:
+      driver: bridge

@@ -1,14 +1,5 @@
-FROM node:lts-alpine3.9
-
-RUN npm i npm@latest -g
-
+FROM mhart/alpine-node
+RUN yarn global add serve
 WORKDIR /app
-
-COPY package.json package-lock.json* ./
-RUN npm install --no-optional && npm cache clean --force
-
-COPY . .
-
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+COPY ./build .
+CMD ["serve", "-p", "80", "-s", "."]doc
